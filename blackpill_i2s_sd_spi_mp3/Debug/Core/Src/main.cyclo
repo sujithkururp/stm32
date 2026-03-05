@@ -1,0 +1,17 @@
+../Core/Src/main.c:103:5:_write	4
+../Core/Src/main.c:133:6:set_i2s_freq	2
+../Core/Src/main.c:155:6:process_buffer	4
+../Core/Src/main.c:181:6:HAL_I2S_TxCpltCallback	1
+../Core/Src/main.c:185:6:HAL_I2S_TxHalfCpltCallback	1
+../Core/Src/main.c:189:6:process_character	7
+../Core/Src/main.c:218:6:HAL_UARTEx_RxEventCallback	4
+../Core/Src/main.c:249:9:parse_wav_header	9
+../Core/Src/main.c:308:6:list_wav_files	4
+../Core/Src/main.c:344:5:main	20
+../Core/Src/main.c:613:6:SystemClock_Config	3
+../Core/Src/main.c:659:13:MX_I2S2_Init	2
+../Core/Src/main.c:693:13:MX_SPI1_Init	2
+../Core/Src/main.c:731:13:MX_USART1_UART_Init	2
+../Core/Src/main.c:762:13:MX_DMA_Init	1
+../Core/Src/main.c:784:13:MX_GPIO_Init	1
+../Core/Src/main.c:817:6:Error_Handler	1
