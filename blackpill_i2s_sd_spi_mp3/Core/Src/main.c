@@ -324,7 +324,7 @@ void list_wav_files(void) {
     f_closedir(&dir_list);
 
     if (count == 0) {
-        printf("⚠️  No WAV files found!\n");
+        printf("  No WAV files found!\n");
         printf("Please copy .wav files to SD card root directory\n");
     } else {
         printf("Total: %d WAV files found\n", count);
@@ -387,7 +387,7 @@ int main(void)
   UINT rbytes, wbytes;
   uint32_t total_uptime = 0;
 
-  // 1️⃣ Mount filesystem (SPI still slow)
+  //  Mount filesystem (SPI still slow)
   fres = f_mount(&FatFs, "", 1);
 
   if (fres != FR_OK) {
@@ -397,18 +397,18 @@ int main(void)
 
   printf("SD Mounted OK\n");
 
-  // 2️⃣ NOW increase SPI speed
+  // NOW increase SPI speed
   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
   if (HAL_SPI_Init(&hspi1) != HAL_OK) {
       printf("SPI speed increase failed\r\n");
-      // ❌ ERROR: Can't return -1 if this is in main() or void function
+      //  ERROR: Can't return -1 if this is in main() or void function
       // FIX: Use while(1) or Error_Handler() instead
       while(1);  // Changed from return -1
   }
 
   printf("SPI speed increased\n");
 
-  // 3️⃣ Now safe to use filesystem at high speed
+  //  Now safe to use filesystem at high speed
   DWORD free_clusters, free_sectors, total_sectors;
   FATFS* getFreeFs;
 
@@ -439,7 +439,7 @@ int main(void)
 
   list_wav_files();
 
-  // ✅ ADD THIS: Load first WAV file automatically
+  //  ADD THIS: Load first WAV file automatically
   printf("Loading first WAV file...\n");
   res = f_findfirst(&dir, &music_file_info, "/", "*.wav");
 
@@ -454,14 +454,7 @@ int main(void)
 
   HAL_UARTEx_ReceiveToIdle_DMA(&huart1, (uint8_t*) &usart_rx_buffer, sizeof(usart_rx_buffer));
 
-  // ❌ ERROR: Closing file that was never opened
-  // FIX: Only close if you opened it first
-  // f_close(&fil);  // Commented out - fil was never opened
-
-  // ❌ ERROR: Unmounting while system is still running
-  // FIX: Only unmount when shutting down, not during normal operation
-  // f_mount(NULL, "", 0);  // Commented out - premature unmount
-
+  
            //Now let's try and write a file "write.txt"
 
 
@@ -543,7 +536,7 @@ int main(void)
 	        	      if (res != FR_OK || music_file_info.fname[0] == '\0') {
 	        	          printf("Restarting directory search...\n");
 
-	        	          // ✅ Close and reopen directory
+	        	          // Close and reopen directory
 	        	          f_closedir(&dir);
 
 	        	          if (f_opendir(&dir, "/") != FR_OK) {
@@ -564,7 +557,7 @@ int main(void)
 
 	        	      printf("Next file: %s\n", music_file_info.fname);
 
-	        	      // ✅ Try to open the file
+	        	      //  Try to open the file
 	        	      if (f_open(&music_file, music_file_info.fname, FA_READ) != FR_OK) {
 	        	          printf("Unable to open %s\n", music_file_info.fname);
 	        	          open_next_file = 1;  // Try next file
