@@ -303,7 +303,7 @@ FRESULT parse_wav_header(FIL *f, fmt_typedef *format) {
     return FR_OK;
 }
 
-/* USER CODE BEGIN 0 */
+
 
 void list_wav_files(void) {
     DIR dir_list;
@@ -333,7 +333,7 @@ void list_wav_files(void) {
     printf("============================\n\n");
 }
 
-/* USER CODE END 0 */
+
 
 /* USER CODE END 0 */
 
